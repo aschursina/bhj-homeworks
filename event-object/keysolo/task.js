@@ -17,7 +17,14 @@ class Game {
   }
 
   registerEvents() {
-    /*
+    let symbol = this.currentSymbol.textContent;
+    document.addEventListener('keyup', event => {
+      console.log(event.key);
+      if (event.key === 'Shift') return;
+      event.key.toLowerCase() === symbol.toLowerCase() ? this.success() : this.fail();
+    });
+
+ /*    
       TODO:
       Написать обработчик события, который откликается
       на каждый введённый символ.
