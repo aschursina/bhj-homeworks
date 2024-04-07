@@ -18,10 +18,17 @@ class Game {
 
   registerEvents() {
     document.addEventListener('keyup', event => {
-      console.log(event.key);
-      if (event.key === 'Shift') return;
-      event.key.toLowerCase() === this.currentSymbol.textContent.toLowerCase() ? this.success() : this.fail();
-    });
+      if (event.key === 'Shift') {
+        return;
+      };
+     
+      if (event.key.toLowerCase() === this.currentSymbol.textContent.toLowerCase()) {
+        return this.success();
+      } else {
+        return this.fail();
+      }
+    }
+    );
 
  /*    
       TODO:
