@@ -8,6 +8,8 @@ arr.forEach((e) => {
   if(currentRotator === arrCase.length - 1) {
     currentRotator = 0;
     arrCase[currentRotator].classList.remove("rotator__case_active")
+  } else { 
+    arrCase[currentRotator].classList.remove("rotator__case_active")
   }
   currentRotator++;
   arrCase[currentRotator].classList.add("rotator__case_active");
