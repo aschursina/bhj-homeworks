@@ -8,13 +8,22 @@ arrTooltip.forEach((link) => {
     newTooltip.classList.add("tooltip");
     newTooltip.textContent = link.getAttribute("title");
     newTooltip.classList.add("tooltip_active");
+   
 
     let activeTooltip = link.querySelector(".tooltip_active");
     if(activeTooltip) {
-        activeTooltip.classList.remove();
-        return;
+      activeTooltip.remove();
+      return;
     }
+
+    let position = link.getBoundingClientRect();
+    let postionTop = position.top + window.pageYOffset;
+    let positionLeft = position.left + window.pageXOffset;
+    newTooltip.style.top = postionTop + position.height + "px";
+    newTooltip.style.left = positionLeft + "px";
 
     link.appendChild(newTooltip);
   }) 
 });
+
+
