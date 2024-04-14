@@ -15,9 +15,10 @@ taskAdd.addEventListener("click", (event) => {
   
   let taskDelete = document.querySelector(".task__remove");
   taskDelete.addEventListener("click", (event) => {
-  event.preventDefault();
-  newTask.remove();
+    newTask.addEventListener("click", (event) =>{
+      event.preventDefault();
+      newTask.remove();
+    })
   })
 })
-
 
