@@ -9,7 +9,6 @@ arrTooltip.forEach((link) => {
     newTooltip.textContent = link.getAttribute("title");
     newTooltip.classList.add("tooltip_active");
    
-
     let activeTooltip = link.querySelector(".tooltip_active");
     if(activeTooltip) {
       activeTooltip.remove();
@@ -22,7 +21,8 @@ arrTooltip.forEach((link) => {
     newTooltip.style.top = postionTop + position.height + "px";
     newTooltip.style.left = positionLeft + "px";
 
-    link.appendChild(newTooltip);
+    link.insertAdjacentElement('afterEnd', newTooltip);
+   
   }) 
 });
 
