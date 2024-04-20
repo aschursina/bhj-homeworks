@@ -1,20 +1,16 @@
-let loader = document.getElementById("loader");
-let items = document.getElementById("items");
+let title = document.getElementById("poll__title");
+let answers = document.getElementById("poll__answers");
 
-function createItem(valutes) {
-  items.innerText = '';
-  Object.keys(valutes).forEach((valute) => {
-    items.insertAdjacentHTML("beforeend",  
-    `<div class="item">
-    <div class="item__code">${valutes[valute].CharCode}</div>
-    <div class="item__value">${valutes[valute].Value}</div>
-    <div class="item__currency">руб.</div>
-    </div>`);
-  })
+function createBtn (answer) {
+  let btn = document.createElement("button");
+  btn.classList.add("poll__answer");
+  btn.textContent = answer;
+  answers.appendChild(btn);
+  return btn;
 }
 
 let xhr = new XMLHttpRequest();
-xhr.open("GET", "https://students.netoservices.ru/nestjs-backend/slow-get-courses");
+xhr.open("GET", "https://students.netoservices.ru/nestjs-backend/poll");
 xhr.send();
 xhr.addEventListener("readystatechange", () => {
   if(xhr.readyState !== xhr.DONE) {
@@ -22,11 +18,18 @@ xhr.addEventListener("readystatechange", () => {
   };
   
   let file = JSON.parse(xhr.responseText);
-  valutes = file.response.Valute;
-  createItem(valutes);
-
-  if(loader.classList.contains("loader_active")) {
-    loader.classList.remove("loader_active")
-  };
+  title.innerText = file.data.title;
+  answersTitle = file.data.answers;
+  
+  answersTitle.forEach(answer => {
+    createBtn (answer);   
+  })
+  
+  let arrAnswer = document.querySelectorAll(".poll__answer");
+  arrAnswer.forEach(btn => {
+    btn.addEventListener("click", (event) => {
+      alert("Спасибо, ваш голос засчитан!");
+    })
+  });
 })
 
